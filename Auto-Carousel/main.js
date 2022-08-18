@@ -10,6 +10,7 @@ slider.style.width = `${100 * slide.length}%`;
 
 
 const slideshow = (i) => {
+    if (document.hidden) return; //preventing function from running when tab is in the background 
     if(i === 1) {
         if (direction === 1) {
             direction = -1;
@@ -73,3 +74,16 @@ window.addEventListener("keydown", keyboardNav);
 
 
 let autoLoop = setInterval(function() {slideshow(1)}, 4000);
+
+i = 1;
+function startStopLoop() {
+    if(i == 1) {
+        i--;
+        clearInterval(autoLoop);
+        document.getElementById("playpause").innerHTML = "▶️";
+    } else {
+        i++;
+        autoLoop = setInterval(function() {slideshow(1)}, 4000);
+        document.getElementById("playpause").innerHTML = "⏸";
+    }
+}
