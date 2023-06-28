@@ -6,12 +6,11 @@ let direction = -1;
 // console.log(carousel);
 
 
-slider.style.width = `${100 * slide.length}%`;
+slider.style.height = `${100 * slide.length}%`;
 
 
 const slideshow = (i) => {
     if (document.hidden) return; //preventing function from running when tab is in the background
-    disc(i);
     if(i === 1) {
         if (direction === 1) {
             direction = -1;
@@ -26,7 +25,7 @@ const slideshow = (i) => {
         }
         carousel.style.justifyContent = 'flex-end';
     }
-    slider.style.transform = `translate(${100 / slide.length * direction}%)`;
+    slider.style.transform = `translateY(${100 / slide.length * direction}%)`;
     
 }
 
@@ -41,7 +40,7 @@ slider.addEventListener('transitionend',  () => {
     }
 
     slider.style.transition = 'none';
-    slider.style.transform = 'translate(0)';
+    slider.style.transform = 'translateY(0)';
     setTimeout(() => {
         slider.style.transition = 'all 0.5s';
     })
@@ -52,56 +51,6 @@ slider.addEventListener('transitionend',  () => {
 //Reset the interval instead and ensure smooth transition
 
 
-function buttonResetTimer(i) {
-    clearInterval(autoLoop);
-    slideshow((i == 1) ? 1 : -1);
-    autoLoop = setInterval(function() {slideshow(1)}, 4000);
-}
 
 
-
-//Keyboard navigation
-
-const keyboardNav = (e) => {
-    if (e.keyCode == "37") {
-        buttonResetTimer(-1);
-
-    } else if (e.keyCode == "39") {
-        buttonResetTimer(1);
-    }
-}
-window.addEventListener("keydown", keyboardNav);
-
-
-
-let autoLoop = setInterval(function() {slideshow(1)}, 4000);
-
-i = 1;
-function startStopLoop() {
-    if(i == 1) {
-        i--;
-        clearInterval(autoLoop);
-        document.getElementById("playpause").innerHTML = "▶️";
-    } else {
-        i++;
-        autoLoop = setInterval(function() {slideshow(1)}, 4000);
-        document.getElementById("playpause").innerHTML = "⏸";
-    }
-}
-
-let d = 0;
-function disc(j) {
-    let val = String.fromCharCode(65 + d);
-    document.getElementById(val).classList.remove("add");
-    d += j;
-    if (d >= slide.length) {
-        d = 0;
-    }
-    if (d < 0) {
-        d = slide.length;
-    }
-
-    
-    val = String.fromCharCode(65 + d);
-    document.getElementById(val).classList.add("add");
-}
+let autoLoop = setInterval(function() {slideshow(1)}, 1100);

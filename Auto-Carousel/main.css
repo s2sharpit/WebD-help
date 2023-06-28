@@ -11,8 +11,8 @@ h2 {
 }
 
 .carousel {
-    border: 4px solid #416be4;
-    border-radius: 25px;
+    /* border: 4px solid #416be4; */
+    border-radius: 20px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -76,20 +76,15 @@ img {
 }
 
 .playpause {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     cursor: pointer;
-    position: absolute;
+    /* position: absolute; */
     font-weight: bold;
     border: none;
-    right: 0;
+    right: 3px;
     color: red;
     width: 40px;
     height: 40px;
     font-size: 25px;
-    border-radius: 25px;
     background: transparent;
     transition: all 0.4s ease;
 }
@@ -97,4 +92,23 @@ img {
 .prev:hover,
 .next:hover {
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.disc {
+    margin: 10px 50%;
+    padding-right: 10px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    font-size: 32px;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    color: lightgray;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
+.add {
+    color: red;
 }
